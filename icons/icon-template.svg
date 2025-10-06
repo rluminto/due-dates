@@ -1,0 +1,50 @@
+<!-- Placeholder icon template - save as PNG icons -->
+<!-- This is a template for creating the extension icons -->
+<!-- Use this SVG to generate 16x16, 48x48, and 128x128 PNG files -->
+
+<svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle with gradient -->
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Main circle background -->
+  <circle cx="64" cy="64" r="58" fill="url(#gradient)" stroke="#fff" stroke-width="4"/>
+  
+  <!-- Calendar icon -->
+  <rect x="32" y="40" width="64" height="48" fill="#fff" rx="4"/>
+  <rect x="32" y="40" width="64" height="12" fill="#fff" rx="4" />
+  <rect x="32" y="48" width="64" height="4" fill="#e9ecef"/>
+  
+  <!-- Calendar grid lines -->
+  <line x1="48" y1="52" x2="48" y2="84" stroke="#e9ecef" stroke-width="1"/>
+  <line x1="64" y1="52" x2="64" y2="84" stroke="#e9ecef" stroke-width="1"/>
+  <line x1="80" y1="52" x2="80" y2="84" stroke="#e9ecef" stroke-width="1"/>
+  <line x1="36" y1="60" x2="92" y2="60" stroke="#e9ecef" stroke-width="1"/>
+  <line x1="36" y1="72" x2="92" y2="72" stroke="#e9ecef" stroke-width="1"/>
+  
+  <!-- Date numbers -->
+  <text x="42" y="68" font-family="Arial, sans-serif" font-size="8" fill="#333" text-anchor="middle">15</text>
+  <text x="58" y="68" font-family="Arial, sans-serif" font-size="8" fill="#dc3545" text-anchor="middle" font-weight="bold">16</text>
+  <text x="74" y="68" font-family="Arial, sans-serif" font-size="8" fill="#333" text-anchor="middle">17</text>
+  
+  <!-- Notification dot -->
+  <circle cx="88" cy="44" r="6" fill="#dc3545"/>
+  <text x="88" y="48" font-family="Arial, sans-serif" font-size="8" fill="#fff" text-anchor="middle" font-weight="bold">!</text>
+</svg>
+
+<!-- 
+To create the actual icon files:
+1. Save this SVG as icon-template.svg
+2. Use an SVG to PNG converter or image editor to create:
+   - icon16.png (16x16 pixels)
+   - icon48.png (48x48 pixels)  
+   - icon128.png (128x128 pixels)
+3. Place these files in the icons/ directory
+
+Alternatively, you can use this as a guide to create custom icons
+that better represent your extension's functionality.
+-->

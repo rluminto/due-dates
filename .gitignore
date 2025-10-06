@@ -1,0 +1,9 @@
+node_modules/
+dist/
+build/
+*.zip
+*.pem
+.vscode/
+.DS_Store
+*.log
+secrets.json

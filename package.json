@@ -1,0 +1,12 @@
+{
+  "name": "deadline-scraper",
+  "version": "0.1.0",
+  "description": "Firefox extension to scrape deadlines from Gradescope and PrairieLearn",
+  "scripts": {
+    "lint": "eslint . --ext .js",
+    "lint:fix": "eslint . --ext .js --fix"
+  },
+  "devDependencies": {
+    "eslint": "^8.0.0"
+  }
+}

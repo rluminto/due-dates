@@ -1,0 +1,411 @@
+/* popup.css */
+/* Styles for the extension popup */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    font-size: 14px;
+    line-height: 1.4;
+    color: #333;
+    background: #f8f9fa;
+    min-width: 320px;
+    max-width: 400px;
+    width: 380px;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    overflow: hidden; /* prevent page-level scrolling; let main-content scroll */
+}
+
+.container {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+/* Layout: make container a vertical flex so footer stays pinned to bottom and main content scrolls */
+.container {
+    display: flex;
+    flex-direction: column;
+    max-height: 560px; /* cap popup height; inner section scrolls */
+}
+
+/* Header */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.title {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.refresh-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 6px;
+    padding: 8px;
+    color: white;
+    cursor: pointer;
+    transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.refresh-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.refresh-btn:active {
+    transform: scale(0.95);
+}
+
+/* Filters */
+.filters {
+    display: flex;
+    border-bottom: 1px solid #e9ecef;
+    background: white;
+    gap: 8px;
+    padding: 8px 12px;
+}
+
+.filter-btn {
+    flex: 1;
+    background: none;
+    border: none;
+    padding: 12px 16px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    color: #6c757d;
+    transition: all 0.2s;
+    border-bottom: 2px solid transparent;
+}
+
+.site-link {
+    background: rgba(255,255,255,0.12);
+    border: none;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.site-link:hover {
+    background: rgba(255,255,255,0.18);
+}
+
+.filter-btn:hover {
+    background: #f8f9fa;
+    color: #495057;
+}
+
+.filter-btn.active {
+    color: #667eea;
+    border-bottom-color: #667eea;
+    background: rgba(102, 126, 234, 0.05);
+}
+
+/* Done/Upcoming tab styles */
+.filter-btn[role="tab"] {
+    position: relative;
+}
+
+/* Checkbox hit area */
+.done-checkbox-wrap {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.done-checkbox {
+    /* visually hide the native checkbox but keep it accessible */
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    position: absolute;
+}
+
+.done-fakebox {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    border: 1px solid #ced4da;
+    display: inline-block;
+    background: #fff;
+}
+
+.filter-toggle {
+    background: none;
+    border: 1px solid transparent;
+    padding: 8px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    color: #6c757d;
+    font-size: 12px;
+}
+
+.filter-toggle.active {
+    background: rgba(255, 235, 238, 0.9);
+    border-color: #f8d7da;
+    color: #c82333;
+}
+
+.deadline-time.overdue-badge {
+    background: #dc3545 !important;
+}
+
+.done-checkbox:focus + .done-fakebox,
+.done-checkbox-wrap:focus-within .done-fakebox {
+    outline: 2px solid rgba(102,126,234,0.6);
+}
+
+.done-checkbox:checked + .done-fakebox {
+    background: #667eea;
+    border-color: #667eea;
+}
+
+/* Snackbar */
+.snackbar {
+    position: fixed;
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+    background: rgba(0,0,0,0.85);
+    color: #fff;
+    padding: 10px 14px;
+    border-radius: 8px;
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    z-index: 9999;
+}
+
+.snackbar.show {
+    display: flex;
+}
+
+.snackbar-btn {
+    background: transparent;
+    border: none;
+    color: #ffd54f;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+
+/* Main Content */
+.main-content {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    min-height: 120px;
+    max-height: none;
+    overscroll-behavior: contain; /* prevent parent/page overscroll */
+    padding-bottom: 8px; /* small breathing room above footer */
+}
+
+.loading, .empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: #6c757d;
+}
+
+.empty-hint {
+    font-size: 12px;
+    margin-top: 8px;
+    line-height: 1.5;
+}
+
+/* Deadline List */
+.deadline-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.deadline-item {
+    border-bottom: 1px solid #e9ecef;
+    transition: background 0.2s;
+}
+
+.deadline-item:last-child {
+    border-bottom: none;
+}
+
+.deadline-item:hover {
+    background: #f8f9fa;
+}
+
+.deadline-link {
+    display: block;
+    padding: 16px 20px;
+    text-decoration: none;
+    color: inherit;
+}
+
+.deadline-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 6px;
+}
+
+.deadline-title {
+    font-weight: 600;
+    font-size: 14px;
+    color: #212529;
+    line-height: 1.3;
+    margin-right: 12px;
+    flex: 1;
+}
+
+.deadline-source {
+    font-size: 11px;
+    font-weight: 500;
+    padding: 2px 6px;
+    border-radius: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    flex-shrink: 0;
+}
+
+.deadline-source.gradescope {
+    background: #e3f2fd;
+    color: #1976d2;
+}
+
+.deadline-source.prairielearn {
+    background: #f3e5f5;
+    color: #7b1fa2;
+}
+
+.deadline-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.deadline-course {
+    font-size: 12px;
+    color: #6c757d;
+    flex: 1;
+}
+
+.deadline-time {
+    font-size: 12px;
+    font-weight: 500;
+    white-space: normal; /* allow wrapping so long labels don't overflow */
+    overflow-wrap: anywhere;
+}
+
+.deadline-time.urgent {
+    color: #dc3545;
+}
+
+.deadline-time.warning {
+    color: #fd7e14;
+}
+
+.deadline-time.normal {
+    color: #28a745;
+}
+
+/* Footer */
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 20px;
+    background: #f8f9fa;
+    border-top: 1px solid #e9ecef;
+    font-size: 12px;
+}
+
+.footer {
+    flex: 0 0 auto;
+}
+
+.footer-stats {
+    color: #6c757d;
+}
+
+.options-btn {
+    background: none;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    padding: 6px 12px;
+    font-size: 11px;
+    color: #6c757d;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.options-btn:hover {
+    background: #e9ecef;
+    color: #495057;
+}
+
+/* Scrollbar */
+.main-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.main-content::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.main-content::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 3px;
+}
+
+.main-content::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+/* Responsive adjustments */
+@media (max-width: 350px) {
+    body {
+        width: 300px;
+        min-width: 300px;
+    }
+    
+    .header {
+        padding: 12px 16px;
+    }
+    
+    .title {
+        font-size: 16px;
+    }
+    
+    .filter-btn {
+        padding: 10px 12px;
+        font-size: 12px;
+    }
+    
+    .deadline-link {
+        padding: 12px 16px;
+    }
+}

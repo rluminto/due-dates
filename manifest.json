@@ -1,0 +1,40 @@
+{
+  "manifest_version": 3,
+  "name": "Deadline Scraper",
+  "version": "1.0",
+  "description": "Scrapes deadlines from Gradescope and PrairieLearn.",
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting",
+    "notifications",
+    "alarms"
+  ],
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "action": {
+    "default_popup": "ui/popup.html",
+    "default_icon": "icons/icon48.png",
+    "default_title": "Upcoming Deadlines"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.prairielearn.com/*assessments*"],
+      "js": ["content-scripts/scrape-prairielearn.js"]
+    },
+    {
+      "matches": ["*://*.gradescope.com/courses/*"],
+      "js": ["content-scripts/scrape-gradescope.js"]
+    }
+  ],
+  "options_ui": {
+    "page": "ui/options.html",
+    "open_in_tab": false
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}

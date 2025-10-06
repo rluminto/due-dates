@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deadline Scraper</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div style="display:flex; align-items:center; gap:8px;">
+                <h1 class="title">Deadlines</h1>
+                <!-- Quick site buttons removed: refresh now runs PL then GS -->
+            </div>
+            <!-- Show-done moved to a dedicated 'Done' tab below -->
+            <button id="refreshBtn" class="refresh-btn" title="Refresh current page">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/>
+                    <path d="M21 3v5h-5"/>
+                    <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/>
+                    <path d="M3 21v-5h5"/>
+                </svg>
+            </button>
+        </header>
+
+        <div class="filters" role="tablist" aria-label="Deadline views">
+            <button id="filterUpcoming" class="filter-btn active" role="tab" aria-selected="true">Upcoming</button>
+            <button id="filterDone" class="filter-btn" role="tab" aria-selected="false">Done</button>
+            <!-- Overdue-only toggle removed per user request -->
+        </div>
+
+        <main class="main-content">
+            <div id="loadingMessage" class="loading">Loading deadlines...</div>
+            <div id="emptyMessage" class="empty-state" style="display: none;">
+                <p>No deadlines found.</p>
+                <p class="empty-hint">Click the refresh button on a supported page to scrape, or use Refresh from the popup to scan known sites.</p>
+            </div>
+            <ul id="deadlineList" class="deadline-list" style="display: none;"></ul>
+        </main>
+
+        <!-- Snackbar for undo actions -->
+        <div id="snackbar" class="snackbar" aria-live="polite" aria-atomic="true" style="display:none;"></div>
+
+        <footer class="footer">
+            <div class="footer-stats">
+                <span id="itemCount">0 items</span>
+            </div>
+            <div class="footer-actions">
+                <button id="optionsBtn" class="options-btn">Settings</button>
+            </div>
+        </footer>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html>

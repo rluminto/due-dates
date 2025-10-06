@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deadline Scraper Settings</title>
+    <link rel="stylesheet" href="options.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="title">Deadline Scraper Settings</h1>
+            <p class="subtitle">Configure your deadline tracking preferences</p>
+        </header>
+
+        <main class="main-content">
+            <form id="settingsForm" class="settings-form">
+                <section class="settings-section">
+                    <h2 class="section-title">Notifications</h2>
+                    
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <label for="notificationsEnabled" class="setting-label">
+                                Enable notifications
+                            </label>
+                            <p class="setting-description">
+                                Show desktop notifications for upcoming deadlines
+                            </p>
+                        </div>
+                        <div class="setting-control">
+                            <label class="toggle">
+                                <input type="checkbox" id="notificationsEnabled" name="notificationsEnabled">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <label for="notificationHours" class="setting-label">
+                                Notification window
+                            </label>
+                            <p class="setting-description">
+                                How far in advance to notify about deadlines (in hours)
+                            </p>
+                        </div>
+                        <div class="setting-control">
+                            <select id="notificationHours" name="notificationHours" class="select-control">
+                                <option value="1">1 hour</option>
+                                <option value="3">3 hours</option>
+                                <option value="6">6 hours</option>
+                                <option value="12">12 hours</option>
+                                <option value="24">24 hours</option>
+                                <option value="48">48 hours</option>
+                                <option value="72">72 hours</option>
+                            </select>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="settings-section">
+                    <h2 class="section-title">Data Management</h2>
+                    
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <div class="setting-label">Stored deadlines</div>
+                            <p class="setting-description">
+                                Currently tracking <span id="itemCount">0</span> deadline(s).
+                                Old deadlines are automatically cleaned up after 30 days.
+                            </p>
+                        </div>
+                        <div class="setting-control">
+                            <button type="button" id="exportBtn" class="secondary-btn">
+                                Export Data
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <div class="setting-label">Clear all data</div>
+                            <p class="setting-description">
+                                Remove all stored deadlines and reset settings to defaults.
+                                This action cannot be undone.
+                            </p>
+                        </div>
+                        <div class="setting-control">
+                            <button type="button" id="clearDataBtn" class="danger-btn">
+                                Clear All Data
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="settings-section">
+                    <h2 class="section-title">About</h2>
+                    
+                    <div class="about-info">
+                        <p><strong>Deadline Scraper v1.0</strong></p>
+                        <p>Automatically tracks assignment deadlines from Gradescope and PrairieLearn.</p>
+                        
+                        <div class="supported-sites">
+                            <h3>Supported Sites:</h3>
+                            <ul>
+                                <li>Gradescope (*.gradescope.com)</li>
+                                <li>PrairieLearn (*.prairielearn.com)</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="usage-tips">
+                            <h3>Usage Tips:</h3>
+                            <ul>
+                                <li>Visit assignment pages to automatically scrape deadlines</li>
+                                <li>Use the refresh button in the popup to manually update from current page</li>
+                                <li>Click on deadline items to open the assignment directly</li>
+                                <li>Badge shows number of deadlines due in the next 24 hours</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+            </form>
+        </main>
+
+        <footer class="footer">
+            <div class="save-status">
+                <span id="saveStatus"></span>
+            </div>
+            <div class="footer-actions">
+                <button type="button" id="resetBtn" class="secondary-btn">
+                    Reset to Defaults
+                </button>
+                <button type="submit" form="settingsForm" id="saveBtn" class="primary-btn">
+                    Save Settings
+                </button>
+            </div>
+        </footer>
+    </div>
+
+    <script src="options.js"></script>
+</body>
+</html>

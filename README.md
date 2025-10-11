@@ -5,6 +5,10 @@ Due Dates is a lightweight Firefox WebExtension that scrapes assignment and asse
 
 Key goals: privacy-first (no external servers), minimal permissions, and reliable scraping for supported course sites.
 
+## Firefox Store Link
+
+https://addons.mozilla.org/en-US/firefox/addon/due-dates/
+
 ## Features
 
 - Scrapes deadlines from Gradescope and PrairieLearn
